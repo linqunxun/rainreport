@@ -98,7 +98,7 @@ try :
 		raise Exception("参数个数有误")
 except Exception as err :
 	print("异常信息：", err)
-	print("参数解析有误！\n● 不传参则取当天数据\n● 传一个日期则取该日期数据\n● 传两个日期则取日期范围数据\n● 日期格式为：2022-01-01")
+	print(":D帮助手册（help）：\n● 不传参则取当天数据\n● 传一个日期则取该日期数据\n● 传两个日期则取日期范围数据\n● 日期格式为：2022-01-01")
 	exit()
 
 print("准备开始采集，日期为：%s" %(filename))
