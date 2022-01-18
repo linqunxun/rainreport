@@ -6,6 +6,11 @@
 ```shell
 ./rainreport.py [begin_date] [end_date]
 ```
+## 打包方式
+注意：由于程序依赖`VIEWSTATE`文件，所以打包时务必将该文件放在打包目录下。
+```shell
+pyinstaller -F .\rainreport.py
+```
 
 ## 更新日志
 - 2022-01-18 完善程序，支持日期段采集
