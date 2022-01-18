@@ -1,9 +1,7 @@
 #!/usr/local/bin/python
 # -*- coding:utf-8 -*- 
-# 调用方式一：获取当天的数据：$ python rainreport.py
-# 调用方式二：获取一段时期的数据：$ python rainreport.py "2016-09-01 00:00" "2016-09-04 00:00"
 
-import time
+import os
 import urllib.request
 import re
 import sys
@@ -19,6 +17,11 @@ MATCH_TD_BEGIN = 3
 MATCH_TD_END = 4
 MATCH_TABLE_END = 5
 DATE_FORMAT = "%Y-%m-%d"
+
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base_path, relative_path)
 
 def grab(date, file):
 	print("正在采集%s的数据..." %(date.strftime(DATE_FORMAT)))
@@ -105,7 +108,7 @@ print("准备开始采集，日期为：%s" %(filename))
 
 file = write_file_bl = open("./" + filename + "_big_lit.cvs", 'a')
 url = 'http://210.76.80.76:9001/Report/RainReport.aspx'
-viewstate_file = open("VIEWSTATE", "r")
+viewstate_file = open(resource_path('VIEWSTATE'), "r")
 view_state = viewstate_file.read().strip('\n')
 viewstate_file.close()
 eventvalidation = '/wEdABx9RZMmw1LG+yU0BQd3TV2rD5R4QB07L6EPE8hbiA1HCjQe693E4rfh8w4KrFy5Bj3qc95Ub9AmjsCaEcQ1PRGXJY9KOVS66bYw3q07YOQVt4DmtqNRf8Rh8CBmDXE37HiN5RVSvKkNx6BevOTmSZwzKK4M9qnFNMlL/90YA0v2KsxbrBB3jo9Cugoavc63zLm9My41G4k2bD1H9/DevJa7wcjQz304htdplq4o6qLjU7BToL28oNzz/tjDoVVVIhiD3oM18XDf8vos8kRdlCgWpjFPpuO0nCnf++I958L2pfPnIB5/wJLV8h40L35u+d4vFTOoUBfCvciBoq6O3SZ4CMvy4Ne/abH/S8UnCo91U4bK+iIVPQ9Qmq1oIGHjR+rSlof14T3WkNe3Bfqmtxf9LKiIdtM0Qyv+SkqglRIe2eX+ybSo2jt25MGjS+iu0HzzRgyGF4e9D60kZeFjGcVG3Mp8k0MqtIykrMCeFt1vrvYBoMfVKie2hgAVD0f/Dy7Ev58OiHZScWJMXWzdRGgTupO9qKKX2H5OVAecnhdKrp/niFT6iq+w7w6u1SnFjkNYEmXUkIdwCjm7RrNxm+3ecjUCzmBKr0HCW4ODG/DfLtR6irz7pCQihoGrG/aDEXc='
